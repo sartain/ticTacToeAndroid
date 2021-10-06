@@ -68,8 +68,12 @@ class TicTacToeBoardTest {
 }
 
 class TicTacToeBoard {
-    val emptySpaces = 9
+    val board = arrayOf(arrayOf(' ', ' ', ' '), arrayOf(' ', ' ', ' '), arrayOf(' ', ' ', ' '))
+    val emptySpaces = board[0].size + board[1].size + board[2].size
 
-    fun playMoveAtPosition(x: Int, y: Int) = Unit
-    fun getCharacterAtPosition(x: Int, y: Int) = 'X'
+    fun playMoveAtPosition(x: Int, y: Int) {
+        board[x][y] = 'X'
+    }
+
+    fun getCharacterAtPosition(x: Int, y: Int) = board[x][y]
 }
