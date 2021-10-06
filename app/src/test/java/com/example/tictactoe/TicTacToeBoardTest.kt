@@ -14,7 +14,7 @@ import org.junit.Assert.*
  * ToDo:
  *   - Has 9 empty spaces: Done
  *   - Play a 'X' or 'O' in an empty space:
- *      -Can play 'X' at (0,0) first move:
+ *      -Can play 'X' at (0,0) first move: Done
  *      -Cannot play 'O' at (0,0) second move:
  *      -Can play 'O' at (2,2) second move:
  *   - Alternate between 'X' and 'O' player:
@@ -64,6 +64,18 @@ class TicTacToeBoardTest {
         testSubject.playMoveAtPosition(0, 0) //'O'
         //then:
         assertEquals('X', testSubject.getCharacterAtPosition(0, 0))
+    }
+
+    @Test
+    fun `given played 'x' at (0,0) then can play 'O' at (2,2)`() {
+        //given:
+        val testSubject = TicTacToeBoard()
+        //when:
+        testSubject.playMoveAtPosition(0, 0) //'X'
+        testSubject.playMoveAtPosition(2, 2) //'O'
+        //then:
+        assertEquals('X', testSubject.getCharacterAtPosition(0,0))
+        assertEquals('O', testSubject.getCharacterAtPosition(2,2))
     }
 }
 
