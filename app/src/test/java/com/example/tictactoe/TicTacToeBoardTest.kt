@@ -106,6 +106,23 @@ class TicTacToeBoardTest {
         assertEquals("playable", result4)
     }
     //Test for not playable (draw result) FULL BOARD
+
+    @Test
+    fun `given full board of values then get 'draw' as game result`() {
+        //given:
+        val testSubject = TicTacToeBoard()
+        //when:
+        var finalResult = ""
+        (0..2).forEach { r ->
+            (0..2).forEach { c ->
+                if(r == 2 && c == 2)
+                    finalResult = testSubject.playMoveAtPosition(r, c)
+                testSubject.playMoveAtPosition(r, c)
+            }
+        }
+        //then:
+        assertEquals("draw", finalResult)
+    }
 }
 
 class TicTacToeBoard {
