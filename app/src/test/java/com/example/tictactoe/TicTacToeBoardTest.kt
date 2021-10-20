@@ -25,9 +25,9 @@ import java.lang.StringBuilder
  *   - Alternate between 'X' and 'O' player:
  *      -Can play 'X' at (1,1) third move: Done
  *   - Shows either draw / victor:
- *      -When board is not full and no same three characters in a row game is playable:
- *      -When board is full and no same three characters in a row call game a draw:
- *      -Three of same characters in a row call game a win:
+ *      -When board is not full and no same three characters in a row game is playable: Done
+ *      -When board is full and no same three characters in a row call game a draw: Done
+ *      -Three of same characters in a row call game a win: Done
  *
  */
 class TicTacToeBoardTest {
@@ -152,6 +152,22 @@ class TicTacToeBoardTest {
         finalResult = testSubject.playMoveAtPosition(2, 0)    //X
         //then:
         assertEquals("X wins", finalResult)
+    }
+
+    @Test
+    fun `given O plays valid winning moves then get 'O wins' as game result`() {
+        //given:
+        val testSubject = TicTacToeBoard()
+        //when:
+        var finalResult = ""
+        testSubject.playMoveAtPosition(2, 0)    //X
+        testSubject.playMoveAtPosition(0, 0)    //O
+        testSubject.playMoveAtPosition(1, 0)    //X
+        testSubject.playMoveAtPosition(1, 1)    //O
+        testSubject.playMoveAtPosition(1, 2)    //X
+        finalResult = testSubject.playMoveAtPosition(2, 2)    //O
+        //then:
+        assertEquals("O wins", finalResult)
     }
 
     private fun playDrawGame(board: TicTacToeBoard) {
