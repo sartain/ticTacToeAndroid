@@ -22,9 +22,9 @@ import java.lang.StringBuilder
  *      -Can play 'X' at (0,0) first move: Done
  *      -Cannot play 'O' at (0,0) second move: Done
  *      -Can play 'O' at (2,2) second move: Done
- *   - Alternate between 'X' and 'O' player:
+ *   - Alternate between 'X' and 'O' player: Done
  *      -Can play 'X' at (1,1) third move: Done
- *   - Shows either draw / victor:
+ *   - Shows either draw / victor: Done
  *      -When board is not full and no same three characters in a row game is playable: Done
  *      -When board is full and no same three characters in a row call game a draw: Done
  *      -Three of same characters in a row call game a win: Done
@@ -61,7 +61,7 @@ class TicTacToeBoardTest {
                 }
             }
         }
-        assertEquals("playable", gameState)
+        assertEquals("O plays next", gameState)
     }
 
     @Test
@@ -73,8 +73,8 @@ class TicTacToeBoardTest {
         val result2 = testSubject.playMoveAtPosition(0, 0) //'O'
         //then:
         assertEquals('X', testSubject.getCharacterAtPosition(0, 0))
-        assertEquals("playable", result1)
-        assertEquals("playable", result2)
+        assertEquals("O plays next", result1)
+        assertEquals("O plays next", result2)
     }
 
     @Test
@@ -87,8 +87,8 @@ class TicTacToeBoardTest {
         //then:
         assertEquals('X', testSubject.getCharacterAtPosition(0, 0))
         assertEquals('O', testSubject.getCharacterAtPosition(2, 2))
-        assertEquals("playable", result1)
-        assertEquals("playable", result2)
+        assertEquals("O plays next", result1)
+        assertEquals("X plays next", result2)
     }
 
     @Test
@@ -105,10 +105,10 @@ class TicTacToeBoardTest {
         assertEquals('O', testSubject.getCharacterAtPosition(2, 2))
         assertEquals('X', testSubject.getCharacterAtPosition(1, 0))
         assertEquals('O', testSubject.getCharacterAtPosition(0, 1))
-        assertEquals("playable", result1)
-        assertEquals("playable", result2)
-        assertEquals("playable", result3)
-        assertEquals("playable", result4)
+        assertEquals("O plays next", result1)
+        assertEquals("X plays next", result2)
+        assertEquals("O plays next", result3)
+        assertEquals("X plays next", result4)
     }
     //Test for not playable (draw result) FULL BOARD
 
@@ -193,62 +193,4 @@ class TicTacToeBoardTest {
 
     //Attempt or make sense of board and try getting draw working
     //Can breakpoint each line
-}
-
-class TicTacToeBoard {
-    val board = arrayOf(
-        arrayOf(BLANK, BLANK, BLANK),
-        arrayOf(BLANK, BLANK, BLANK),
-        arrayOf(BLANK, BLANK, BLANK)
-    )
-    val emptySpaces = board[0].size + board[1].size + board[2].size
-    var playX = true
-    override fun toString(): String {
-        val result = StringBuilder()
-        for(i in 0..2) {
-            for(j in 0..2) {
-                result.append("${board[i][j]}|")
-            }
-            result.append("\n")
-        }
-        return result.toString()
-    }
-    fun playMoveAtPosition(x: Int, y: Int): String {
-        if (board[x][y] != BLANK) return getGameState()
-        board[x][y] = if (playX) X else O
-        playX = !playX
-        return getGameState()
-    }
-
-    private fun getGameState(): String {
-        print(this.toString() + "\n")
-        for (delta2 in 0..2) {
-            if ((board[0][delta2] != BLANK) && (board[0][delta2] == board[1][delta2]) && (board[1][delta2] == board[2][delta2])) {
-                return "${board[0][delta2]} wins"
-            }
-            if ((board[delta2][0] != BLANK) && (board[delta2][0] == board[delta2][1]) && (board[delta2][1] == board[delta2][2])) {
-                return "${board[delta2][0]} wins"
-            }
-        }
-        if ((board[0][0] != BLANK) && (board[0][0] == board[1][1]) && (board[1][1] == board[2][2])) {
-            return "${board[0][0]} wins"
-        }
-        if ((board[2][0] != BLANK) && (board[2][0] == board[1][1]) && (board[1][1] == board[0][2])) {
-            return "${board[2][0]} wins"
-        }
-        (0..2).forEach { r ->
-            (0..2).forEach { c ->
-                if (board[r][c] == BLANK) return "playable"
-            }
-        }
-        return "draw"
-    }
-
-    fun getCharacterAtPosition(x: Int, y: Int) = board[x][y]
-
-    companion object {
-        private const val BLANK = ' '
-        private const val X = 'X'
-        private const val O = 'O'
-    }
 }
