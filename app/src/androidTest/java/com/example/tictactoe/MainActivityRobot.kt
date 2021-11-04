@@ -21,4 +21,9 @@ class MainActivityRobot {
         }
     }
 
+    fun checkPlayerTurn() {
+        Espresso.onView(withId(R.id.playerTurn))  //Find id
+            .check(matches(withText("X Turn")))
+    }
+
 }

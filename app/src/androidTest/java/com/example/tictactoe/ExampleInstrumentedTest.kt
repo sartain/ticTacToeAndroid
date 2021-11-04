@@ -36,6 +36,7 @@ class ExampleInstrumentedTest {
     fun whenActivityLoadsDisplaysTitle() {
         mainActivityRobot.checkTitle()
         mainActivityRobot.checkIsBlank()
+        mainActivityRobot.checkPlayerTurn()
     }
 
     //Text view for who's turn
