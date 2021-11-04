@@ -23,6 +23,7 @@ import org.junit.Rule
 class ExampleInstrumentedTest {
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
+    private val mainActivityRobot = MainActivityRobot()
 
     @Test
     fun useAppContext() {
@@ -33,7 +34,9 @@ class ExampleInstrumentedTest {
 
     @Test
     fun whenActivityLoadsDisplaysTitle() {
-        onView(withId(R.id.title))  //Find id
-            .check(matches(withText("Hello World!")))
+        mainActivityRobot.checkTitle()
+        mainActivityRobot.checkIsBlank()
     }
+
+    //Text view for who's turn
 }
