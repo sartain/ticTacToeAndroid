@@ -30,9 +30,11 @@ class ExampleInstrumentedTest {
 
     @Test
     fun whenActivityLoadsDisplaysBoardAndGameInformation() {
-        mainActivityRobot.checkTitle()
-        mainActivityRobot.checkIsBlank()
-        mainActivityRobot.checkPlayerTurn()
+        mainActivityRobot.startupMainActivity {
+            checkTitleAppears()
+            checkGridIsBlank()
+            checkPlayerTurnTextAppears()
+        }
     }
 
     //Text view for who's turn
