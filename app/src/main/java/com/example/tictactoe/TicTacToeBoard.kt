@@ -1,6 +1,11 @@
 package com.example.tictactoe
 
 class TicTacToeBoard {
+    enum class PlayerType {
+        X,
+        O
+    }
+
     val board = arrayOf(
         arrayOf(BLANK, BLANK, BLANK),
         arrayOf(BLANK, BLANK, BLANK),
@@ -8,6 +13,7 @@ class TicTacToeBoard {
     )
     val emptySpaces = board[0].size + board[1].size + board[2].size
     var playX = true
+
     override fun toString(): String {
         val result = StringBuilder()
         for (i in 0..2) {
@@ -26,7 +32,7 @@ class TicTacToeBoard {
         return getGameState()
     }
 
-    private fun getCurrentPlayer(): Char = if (playX) X else O
+    fun getCurrentPlayer(): PlayerType = if (playX) PlayerType.X else PlayerType.O
 
     private fun getGameState(): String {
         print(this.toString() + "\n")

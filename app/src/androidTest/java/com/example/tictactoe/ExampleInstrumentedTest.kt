@@ -30,12 +30,20 @@ class ExampleInstrumentedTest {
 
     @Test
     fun whenActivityLoadsDisplaysBoardAndGameInformation() {
-        mainActivityRobot.startupMainActivity {
+        mainActivityRobot.apply {
             checkTitleAppears()
             checkGridIsBlank()
             checkPlayerTurnTextAppears()
         }
     }
 
+    @Test
+    fun givenEmptyBoardWhenClickBox01AnXAppears() {
+        mainActivityRobot.apply {
+            checkGridIsBlank()
+            clickBox01()
+            checkBox01TextUpdated()
+        }
+    }
     //Text view for who's turn
 }
