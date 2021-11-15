@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         updatePlayer()
-        updateBoxWhenClicked()
+        updateBoardWhenSquareClicked()
     }
 
     private fun updatePlayer() {
@@ -36,8 +36,12 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun updateBoxWhenClicked() {
-        boardItems[0][1].setOnClickListener {boardItems[0][1].text = "X"}
+    private fun updateBoardWhenSquareClicked() {
+        for (boardList in boardItems) {
+            for (board in boardList) {
+                board.setOnClickListener { board.text = "X"}
+            }
+        }
     }
 
     val controller = TicTacToeBoard()
