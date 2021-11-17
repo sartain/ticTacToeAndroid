@@ -56,5 +56,16 @@ class ExampleInstrumentedTest {
             checkBoxText(0, 1, "O")
         }
     }
+
+    @Test
+    fun givenEmptyBoardWhenClickTwoSameBoxesOnlyXAppears() {
+        mainActivityRobot.apply {
+            checkGridIsBlank()
+            clickBox(0, 0)
+            checkBoxText(0, 0, "X")
+            clickBox(0, 0)
+            checkBoxText(0, 0, "X")
+        }
+    }
     //Text view for who's turn
 }

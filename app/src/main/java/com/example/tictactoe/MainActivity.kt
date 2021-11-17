@@ -46,7 +46,8 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-    //Fix test related to this...
+    //Inside listener
+    //Gets current move, if this change after move made (is a valid move) else don't overwrite
     private fun updateBoardWhenSquareClicked() {
         for (boardList in boardItems) {
             for (board in boardList) {
