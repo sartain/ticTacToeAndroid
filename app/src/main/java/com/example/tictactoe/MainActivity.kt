@@ -12,6 +12,8 @@ Aim is to access views in layout XML as if they were properties
 e.g. no findViewByID but using the id name to access
 Required a special import in synthetics import kotlinx.android.synthetic.main.activity_main.*
 View Binding
+add viewBinding { enabled = true } to android {} in the build.gradle file
+This enables view binding class for each layout xml to be used
 ViewBinding Class for each layout xml
 Only for values in the xml with attribute ID's
 A viewbinding is inflated in the oncreate method
@@ -36,10 +38,27 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    private fun TicTacToeBoard.PlayerType.toDisplayText(): String =
+        getString(
+            when (this) {
+                TicTacToeBoard.PlayerType.X -> R.string.x_player
+                TicTacToeBoard.PlayerType.O -> R.string.o_player
+            }
+        )
+
+    //Fix test related to this...
     private fun updateBoardWhenSquareClicked() {
         for (boardList in boardItems) {
             for (board in boardList) {
-                board.setOnClickListener { board.text = "X"}
+                board.setOnClickListener {
+                    val moveToPlay = controller.getCurrentPlayer().toDisplayText()
+                    val x = boardItems.indexOf(boardList)
+                    val y = boardList.indexOf(board)
+                    controller.playMoveAtPosition(x, y)
+                    if (moveToPlay != controller.getCurrentPlayer().toDisplayText()) {
+                        board.text = moveToPlay
+                    }
+                }
             }
         }
     }

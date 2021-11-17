@@ -45,5 +45,16 @@ class ExampleInstrumentedTest {
             checkBox01TextUpdated()
         }
     }
+
+    @Test
+    fun givenEmptyBoardWhenClickTwoUniqueBoxesOneHasXOneHasOAppear() {
+        mainActivityRobot.apply {
+            checkGridIsBlank()
+            clickBox(0, 0)
+            checkBoxText(0, 0, "X")
+            clickBox(0, 1)
+            checkBoxText(0, 1, "O")
+        }
+    }
     //Text view for who's turn
 }

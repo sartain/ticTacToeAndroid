@@ -5,4 +5,6 @@
     <string name="x_wins">X wins</string>
     <string name="y_wins">Y wins</string>
     <string name="game_draw">draw</string>
+    <string name="x_player">X</string>
+    <string name="o_player">O</string>
 </resources>

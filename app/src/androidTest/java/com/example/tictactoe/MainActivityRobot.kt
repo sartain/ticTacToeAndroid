@@ -37,4 +37,61 @@ class MainActivityRobot {
             .check(matches(withText("X")))
     }
 
+    fun clickBox(x: Int, y: Int) {
+        when (x) {
+            0 -> when (y) {
+                0 -> R.id.box00.clickView()
+                1 -> R.id.box01.clickView()
+                2 -> R.id.box02.clickView()
+                else -> return
+            }
+            1 -> when (y) {
+                0 -> R.id.box10.clickView()
+                1 -> R.id.box11.clickView()
+                2 -> R.id.box12.clickView()
+                else -> return
+            }
+            2 -> when (y) {
+                0 -> R.id.box20.clickView()
+                1 -> R.id.box21.clickView()
+                2 -> R.id.box22.clickView()
+                else -> return
+            }
+            else -> return
+        }
+    }
+
+    fun checkBoxText(x: Int, y: Int, text: String) {
+        when (x) {
+            0 -> when (y) {
+                0 -> R.id.box00.checkText(text)
+                1 -> R.id.box01.checkText(text)
+                2 -> R.id.box02.checkText(text)
+                else -> return
+            }
+            1 -> when (y) {
+                0 -> R.id.box10.checkText(text)
+                1 -> R.id.box11.checkText(text)
+                2 -> R.id.box12.checkText(text)
+                else -> return
+            }
+            2 -> when (y) {
+                0 -> R.id.box20.checkText(text)
+                1 -> R.id.box21.checkText(text)
+                2 -> R.id.box22.checkText(text)
+                else -> return
+            }
+            else -> return
+        }
+    }
+
+    fun Int.checkText(text: String) {
+        Espresso.onView(withId(this))
+            .check(matches(withText(text)))
+    }
+
+    fun Int.clickView() {
+        Espresso.onView(withId(this))
+            .perform(click())
+    }
 }
