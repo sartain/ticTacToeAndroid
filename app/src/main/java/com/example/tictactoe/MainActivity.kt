@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         turnTextView.text = getString(
             when (controller.getCurrentPlayer()) {
                 TicTacToeBoard.PlayerType.X -> R.string.x_turn
-                TicTacToeBoard.PlayerType.O -> R.string.y_turn
+                TicTacToeBoard.PlayerType.O -> R.string.o_turn
             }
         )
     }
@@ -59,12 +59,22 @@ class MainActivity : AppCompatActivity() {
                     if (moveToPlay != controller.getCurrentPlayer().toDisplayText()) {
                         board.text = moveToPlay
                     }
+                    updatePlayerTurn()
                 }
             }
         }
     }
 
+    private fun updatePlayerTurn() {
+        val player = controller.getCurrentPlayer()
+        if(player == TicTacToeBoard.PlayerType.O)
+            turnTextView.text = getString(R.string.o_turn)
+        else
+            turnTextView.text = getString(R.string.x_turn)
+    }
+
     val controller = TicTacToeBoard()
+
     val titleTextView: TextView by lazy {
         findViewById(R.id.title)
     }

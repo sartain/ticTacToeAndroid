@@ -67,5 +67,26 @@ class ExampleInstrumentedTest {
             checkBoxText(0, 0, "X")
         }
     }
-    //Text view for who's turn
+
+    @Test
+    fun givenXPlaysTurnThenTurnTextDisplaysOTurn() {
+        mainActivityRobot.apply {
+            checkPlayerTurnText("x")
+            checkGridIsBlank()
+            clickBox(0, 0)
+            checkPlayerTurnText("o")
+        }
+    }
+
+    /*
+    TODo:
+        -X turn finished
+            -Text shows 'O' turn next
+            -Alternate back to 'X'
+        -Game finished
+            -Cannot play additional moves
+            -Display X wins (if x wins)
+            -Display O wins (if o wins)
+            -Display draw (if draw)
+     */
 }

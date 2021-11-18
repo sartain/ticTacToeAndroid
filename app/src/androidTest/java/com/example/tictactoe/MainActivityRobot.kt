@@ -61,6 +61,13 @@ class MainActivityRobot {
         }
     }
 
+    fun checkPlayerTurnText(turn: String) {
+        when (turn) {
+            "x" -> R.id.playerTurn.checkText("X plays next")
+            "o" -> R.id.playerTurn.checkText("O plays next")
+        }
+    }
+
     fun checkBoxText(x: Int, y: Int, text: String) {
         when (x) {
             0 -> when (y) {
