@@ -69,20 +69,22 @@ class ExampleInstrumentedTest {
     }
 
     @Test
-    fun givenXPlaysTurnThenTurnTextDisplaysOTurn() {
+    fun givenXPlaysTurnWhenOPlaysNextTurnTurnTextAlternates() {
         mainActivityRobot.apply {
             checkPlayerTurnText("x")
             checkGridIsBlank()
             clickBox(0, 0)
             checkPlayerTurnText("o")
+            clickBox(1, 0)
+            checkPlayerTurnText("x")
         }
     }
 
     /*
     TODo:
         -X turn finished
-            -Text shows 'O' turn next
-            -Alternate back to 'X'
+            -Text shows 'O' turn next = Done
+            -Alternate back to 'X' = Done
         -Game finished
             -Cannot play additional moves
             -Display X wins (if x wins)
