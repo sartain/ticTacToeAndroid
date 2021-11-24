@@ -5,6 +5,7 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import testHelper.GameScenarioHelper
 
 class MainActivityRobot {
 
@@ -93,16 +94,14 @@ class MainActivityRobot {
         }
     }
 
+    fun playGame(XIndexArray: IntArray, YIndexArray: IntArray) {
+        for(i in 0..XIndexArray.lastIndex) {
+            clickBox(XIndexArray[i], YIndexArray[i])
+        }
+    }
+
     fun playDrawGame() {
-        clickBox(0, 0)
-        clickBox(0, 1)
-        clickBox(0, 2)
-        clickBox(1, 2)
-        clickBox(1, 0)
-        clickBox(2, 0)
-        clickBox(1, 1)
-        clickBox(2, 2)
-        clickBox(2, 1)
+        playGame(GameScenarioHelper.draw_X_Index, GameScenarioHelper.draw_Y_Index)
     }
 
     fun Int.checkText(text: String) {

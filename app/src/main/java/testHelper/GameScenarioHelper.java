@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package testHelper;
 
 public class GameScenarioHelper {
 
