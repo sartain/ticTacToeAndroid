@@ -53,19 +53,21 @@ class MainActivity : AppCompatActivity() {
             for (board in boardList) {
                 board.setOnClickListener {
                     val moveToPlay = controller.getCurrentPlayer().toDisplayText()
-                    val x = boardItems.indexOf(boardList)
-                    val y = boardList.indexOf(board)
-                    controller.playMoveAtPosition(x, y)
+                    playMoveOnController(boardItems.indexOf(boardList), boardList.indexOf(board))
                     if (moveToPlay != controller.getCurrentPlayer().toDisplayText()) {
                         board.text = moveToPlay
                     }
-                    updatePlayerTurn()
+                    updatePlayerTurnText()
                 }
             }
         }
     }
 
-    private fun updatePlayerTurn() {
+    private fun playMoveOnController(x: Int, y: Int) {
+        controller.playMoveAtPosition(x, y)
+    }
+
+    private fun updatePlayerTurnText() {
         val player = controller.getCurrentPlayer()
         if(player == TicTacToeBoard.PlayerType.O)
             turnTextView.text = getString(R.string.o_turn)
