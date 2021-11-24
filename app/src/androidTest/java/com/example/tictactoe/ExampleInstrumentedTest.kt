@@ -83,10 +83,16 @@ class ExampleInstrumentedTest {
     @Test
     fun givenDrawGameProgressTextUpdates() {
         mainActivityRobot.apply {
-            checkGameProgressText("x")
-            checkGridIsBlank()
             playDrawGame()
             checkGameProgressText("draw")
+        }
+    }
+
+    @Test
+    fun givenXWinGameProgressTextUpdates() {
+        mainActivityRobot.apply {
+            playXWinGame()
+            checkGameProgressText("x win")
         }
     }
 

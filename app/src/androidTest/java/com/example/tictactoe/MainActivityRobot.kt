@@ -67,6 +67,7 @@ class MainActivityRobot {
             "x" -> R.id.gameProgress.checkText("X plays next")
             "o" -> R.id.gameProgress.checkText("O plays next")
             "draw" -> R.id.gameProgress.checkText("draw")
+            "x win" -> R.id.gameProgress.checkText("X wins")
         }
     }
 
@@ -102,6 +103,10 @@ class MainActivityRobot {
 
     fun playDrawGame() {
         playGame(GameScenarioHelper.draw_X_Index, GameScenarioHelper.draw_Y_Index)
+    }
+
+    fun playXWinGame() {
+        playGame(GameScenarioHelper.XWin_X_Index, GameScenarioHelper.XWin_Y_Index)
     }
 
     fun Int.checkText(text: String) {

@@ -79,6 +79,8 @@ class MainActivity : AppCompatActivity() {
     private fun setGameProgressTextToFinalResult(gameResult: String) {
         if(gameResult.equals("draw"))
             gameProgressTextView.text = getString(R.string.game_draw)
+        else if(gameResult.equals("X wins"))
+            gameProgressTextView.text = getString(R.string.x_wins)
     }
 
     private fun setGameProgressTextToPlayerTurn() {
