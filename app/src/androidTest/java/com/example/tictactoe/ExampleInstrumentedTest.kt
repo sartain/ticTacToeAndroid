@@ -96,6 +96,14 @@ class ExampleInstrumentedTest {
         }
     }
 
+    @Test
+    fun givenOWinGameProgressTextUpdates() {
+        mainActivityRobot.apply {
+            playOWinGame()
+            checkGameProgressText("o win")
+        }
+    }
+
     /*
     TODo:
         -X turn finished
