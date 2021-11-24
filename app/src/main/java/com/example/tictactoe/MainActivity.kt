@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                     if (moveToPlay != controller.getCurrentPlayer().toDisplayText()) {
                         board.text = moveToPlay
                     }
-                    updatePlayerTurnText()
+                    updateGameProgressText()
                 }
             }
         }
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         controller.playMoveAtPosition(x, y)
     }
 
-    private fun updatePlayerTurnText() {
+    private fun updateGameProgressText() {
         val player = controller.getCurrentPlayer()
         if(player == TicTacToeBoard.PlayerType.O)
             turnTextView.text = getString(R.string.o_turn)
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         findViewById(R.id.title)
     }
     val turnTextView: TextView by lazy {
-        findViewById(R.id.playerTurn)
+        findViewById(R.id.gameProgress)
     }
     val boardItems: List<List<TextView>> by lazy {
         listOf(

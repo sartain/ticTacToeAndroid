@@ -23,7 +23,7 @@ class MainActivityRobot {
     }
 
     fun checkPlayerTurnTextAppears() {
-        Espresso.onView(withId(R.id.playerTurn))
+        Espresso.onView(withId(R.id.gameProgress))
             .check(matches(withText(R.string.x_turn)))
     }
 
@@ -63,8 +63,8 @@ class MainActivityRobot {
 
     fun checkPlayerTurnText(turn: String) {
         when (turn) {
-            "x" -> R.id.playerTurn.checkText("X plays next")
-            "o" -> R.id.playerTurn.checkText("O plays next")
+            "x" -> R.id.gameProgress.checkText("X plays next")
+            "o" -> R.id.gameProgress.checkText("O plays next")
         }
     }
 
