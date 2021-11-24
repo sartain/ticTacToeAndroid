@@ -144,12 +144,7 @@ class TicTacToeBoardTest {
         //given:
         val testSubject = TicTacToeBoard()
         //when:
-        var finalResult = ""
-        testSubject.playMoveAtPosition(0, 0)    //X
-        testSubject.playMoveAtPosition(0, 1)    //O
-        testSubject.playMoveAtPosition(1, 0)    //X
-        testSubject.playMoveAtPosition(0, 2)    //O
-        finalResult = testSubject.playMoveAtPosition(2, 0)    //X
+        var finalResult = playXWinGame(testSubject)
         //then:
         assertEquals("X wins", finalResult)
     }
@@ -159,36 +154,36 @@ class TicTacToeBoardTest {
         //given:
         val testSubject = TicTacToeBoard()
         //when:
-        var finalResult = ""
-        testSubject.playMoveAtPosition(2, 0)    //X
-        testSubject.playMoveAtPosition(0, 0)    //O
-        testSubject.playMoveAtPosition(1, 0)    //X
-        testSubject.playMoveAtPosition(1, 1)    //O
-        testSubject.playMoveAtPosition(1, 2)    //X
-        finalResult = testSubject.playMoveAtPosition(2, 2)    //O
+        var finalResult = playOWinGame(testSubject)
         //then:
         assertEquals("O wins", finalResult)
     }
 
-    private fun playDrawGame(board: TicTacToeBoard) {
-        board.playMoveAtPosition(0,0)   //X
-        println(board.toString())
-        board.playMoveAtPosition(0,1)   //O
-        println(board.toString())
-        board.playMoveAtPosition(0,2)   //X
-        println(board.toString())
-        board.playMoveAtPosition(1,2)   //O
-        println(board.toString())
-        board.playMoveAtPosition(1,0)   //X
-        println(board.toString())
-        board.playMoveAtPosition(2,0)   //O
-        println(board.toString())
-        board.playMoveAtPosition(1,1)   //X
-        println(board.toString())
-        board.playMoveAtPosition(2,2)   //O
-        println(board.toString())
-        board.playMoveAtPosition(2,1)   //X
-        println(board.toString())
+    private fun playDrawGame(board: TicTacToeBoard) : String{
+        var result = ""
+        for(i in 0..GameScenarioHelper.draw_X_Index.lastIndex) {
+            result = board.playMoveAtPosition(GameScenarioHelper.draw_X_Index[i], GameScenarioHelper.draw_Y_Index[i])
+            println(board.toString())
+        }
+        return result
+    }
+
+    private fun playXWinGame(board: TicTacToeBoard) : String {
+        var result = ""
+        for(i in 0..GameScenarioHelper.XWin_X_Index.lastIndex) {
+            result = board.playMoveAtPosition(GameScenarioHelper.XWin_X_Index[i], GameScenarioHelper.XWin_Y_Index[i])
+            println(board.toString())
+        }
+        return result
+    }
+
+    private fun playOWinGame(board: TicTacToeBoard) : String{
+        var result = ""
+        for(i in 0..GameScenarioHelper.OWin_X_Index.lastIndex) {
+            result = board.playMoveAtPosition(GameScenarioHelper.OWin_X_Index[i], GameScenarioHelper.OWin_Y_Index[i])
+            println(board.toString())
+        }
+        return result
     }
 
     //Attempt or make sense of board and try getting draw working
