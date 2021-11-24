@@ -160,32 +160,25 @@ class TicTacToeBoardTest {
     }
 
     private fun playDrawGame(board: TicTacToeBoard) : String{
-        var result = ""
-        for(i in 0..GameScenarioHelper.draw_X_Index.lastIndex) {
-            result = board.playMoveAtPosition(GameScenarioHelper.draw_X_Index[i], GameScenarioHelper.draw_Y_Index[i])
-            println(board.toString())
-        }
-        return result
+        return playGame(board, GameScenarioHelper.draw_X_Index, GameScenarioHelper.draw_Y_Index);
     }
 
     private fun playXWinGame(board: TicTacToeBoard) : String {
-        var result = ""
-        for(i in 0..GameScenarioHelper.XWin_X_Index.lastIndex) {
-            result = board.playMoveAtPosition(GameScenarioHelper.XWin_X_Index[i], GameScenarioHelper.XWin_Y_Index[i])
-            println(board.toString())
-        }
-        return result
+        return playGame(board, GameScenarioHelper.XWin_X_Index, GameScenarioHelper.XWin_Y_Index);
     }
 
     private fun playOWinGame(board: TicTacToeBoard) : String{
+        return playGame(board, GameScenarioHelper.OWin_X_Index, GameScenarioHelper.OWin_Y_Index);
+    }
+
+    private fun playGame(board: TicTacToeBoard, XIndexArray: IntArray, YIndexArray: IntArray) : String{
         var result = ""
-        for(i in 0..GameScenarioHelper.OWin_X_Index.lastIndex) {
-            result = board.playMoveAtPosition(GameScenarioHelper.OWin_X_Index[i], GameScenarioHelper.OWin_Y_Index[i])
+        for(i in 0..XIndexArray.lastIndex) {
+            result = board.playMoveAtPosition(XIndexArray[i], YIndexArray[i])
             println(board.toString())
         }
         return result
     }
-
     //Attempt or make sense of board and try getting draw working
     //Can breakpoint each line
 }
