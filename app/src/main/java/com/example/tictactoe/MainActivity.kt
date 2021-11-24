@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updatePlayer() {
-        turnTextView.text = getString(
+        gameProgressTextView.text = getString(
             when (controller.getCurrentPlayer()) {
                 TicTacToeBoard.PlayerType.X -> R.string.x_turn
                 TicTacToeBoard.PlayerType.O -> R.string.o_turn
@@ -54,25 +54,39 @@ class MainActivity : AppCompatActivity() {
                 board.setOnClickListener {
                     val moveToPlay = controller.getCurrentPlayer().toDisplayText()
                     playMoveOnController(boardItems.indexOf(boardList), boardList.indexOf(board))
-                    if (moveToPlay != controller.getCurrentPlayer().toDisplayText()) {
+                    if (moveToPlay != controller.getCurrentPlayer().toDisplayText()) {  //Check to stop overwriting
                         board.text = moveToPlay
                     }
-                    updateGameProgressText()
                 }
             }
         }
     }
 
     private fun playMoveOnController(x: Int, y: Int) {
-        controller.playMoveAtPosition(x, y)
+        val gameState = controller.playMoveAtPosition(x, y)
+        updateGameProgressText(gameState)
     }
 
-    private fun updateGameProgressText() {
+    private fun updateGameProgressText(gameState: String) {
+        if(gameState.endsWith("plays next")) {
+            setGameProgressTextToPlayerTurn()
+        }
+        else {
+            setGameProgressTextToFinalResult(gameState)
+        }
+    }
+
+    private fun setGameProgressTextToFinalResult(gameResult: String) {
+        if(gameResult.equals("draw"))
+            gameProgressTextView.text = getString(R.string.game_draw)
+    }
+
+    private fun setGameProgressTextToPlayerTurn() {
         val player = controller.getCurrentPlayer()
         if(player == TicTacToeBoard.PlayerType.O)
-            turnTextView.text = getString(R.string.o_turn)
+            gameProgressTextView.text = getString(R.string.o_turn)
         else
-            turnTextView.text = getString(R.string.x_turn)
+            gameProgressTextView.text = getString(R.string.x_turn)
     }
 
     val controller = TicTacToeBoard()
@@ -80,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     val titleTextView: TextView by lazy {
         findViewById(R.id.title)
     }
-    val turnTextView: TextView by lazy {
+    val gameProgressTextView: TextView by lazy {
         findViewById(R.id.gameProgress)
     }
     val boardItems: List<List<TextView>> by lazy {

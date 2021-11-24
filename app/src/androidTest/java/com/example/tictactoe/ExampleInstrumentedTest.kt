@@ -71,12 +71,22 @@ class ExampleInstrumentedTest {
     @Test
     fun givenXPlaysTurnWhenOPlaysNextTurnTurnTextAlternates() {
         mainActivityRobot.apply {
-            checkPlayerTurnText("x")
+            checkGameProgressText("x")
             checkGridIsBlank()
             clickBox(0, 0)
-            checkPlayerTurnText("o")
+            checkGameProgressText("o")
             clickBox(1, 0)
-            checkPlayerTurnText("x")
+            checkGameProgressText("x")
+        }
+    }
+
+    @Test
+    fun givenDrawGameProgressTextUpdates() {
+        mainActivityRobot.apply {
+            checkGameProgressText("x")
+            checkGridIsBlank()
+            playDrawGame()
+            checkGameProgressText("draw")
         }
     }
 

@@ -61,10 +61,11 @@ class MainActivityRobot {
         }
     }
 
-    fun checkPlayerTurnText(turn: String) {
-        when (turn) {
+    fun checkGameProgressText(currentResult: String) {
+        when (currentResult) {
             "x" -> R.id.gameProgress.checkText("X plays next")
             "o" -> R.id.gameProgress.checkText("O plays next")
+            "draw" -> R.id.gameProgress.checkText("draw")
         }
     }
 
@@ -90,6 +91,18 @@ class MainActivityRobot {
             }
             else -> return
         }
+    }
+
+    fun playDrawGame() {
+        clickBox(0, 0)
+        clickBox(0, 1)
+        clickBox(0, 2)
+        clickBox(1, 2)
+        clickBox(1, 0)
+        clickBox(2, 0)
+        clickBox(1, 1)
+        clickBox(2, 2)
+        clickBox(2, 1)
     }
 
     fun Int.checkText(text: String) {
