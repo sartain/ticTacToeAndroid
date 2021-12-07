@@ -3,7 +3,7 @@ package com.example.tictactoe
 import org.junit.Test
 
 import org.junit.Assert.*
-import testHelper.GameScenarioHelper
+import scenario.GameScenarioHelper
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -31,10 +31,6 @@ import testHelper.GameScenarioHelper
  *
  */
 class TicTacToeBoardTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
 
     @Test
     fun `when created has nine empty spaces`() {

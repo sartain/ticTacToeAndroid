@@ -12,7 +12,9 @@ import org.junit.Rule
 
 /**
  * Instrumented test, which will execute on an Android device.
- *
+ * Test as little as possible rather have a unit test.
+ * Live data + RX (mechanisms / implementations of pubsub)
+ * Navigation -> Single live event
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)

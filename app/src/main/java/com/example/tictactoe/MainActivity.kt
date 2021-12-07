@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             for (board in boardList) {
                 board.setOnClickListener {
                     val moveToPlay = controller.getCurrentPlayer().toDisplayText()
-                    playMoveOnController(boardItems.indexOf(boardList), boardList.indexOf(board))
+                    playMoveAndUpdateText(boardItems.indexOf(boardList), boardList.indexOf(board))
                     if (moveToPlay != controller.getCurrentPlayer().toDisplayText()) {  //Check to stop overwriting
                         board.text = moveToPlay
                     }
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun playMoveOnController(x: Int, y: Int) {
+    private fun playMoveAndUpdateText(x: Int, y: Int) {
         val gameState = controller.playMoveAtPosition(x, y)
         updateGameProgressText(gameState)
     }
